@@ -1,331 +1,302 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Portfolio website PeterBaan.dev" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/static/style/site.css" />
-    <title>Portfolio - PeterBaan.dev</title>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <nav id="nav-bar">
-          <a href="#" class="nav-home">
-            <h2>PeterBaan.dev</h2>
-          </a>
-          <ul class="nav-items">
-            <li>
-              <a href="#about" class="nav-link" id="nav-link-about">About</a>
+{% extends "base.html" %} {% block title %}Portfolio - PeterBaan.dev{% endblock
+%} {% block content %}
+<div class="container">
+  <header>
+    <nav id="nav-bar">
+      <a href="#" class="nav-home">
+        <h2>PeterBaan.dev</h2>
+      </a>
+      <ul class="nav-items">
+        <li>
+          <a href="#about" class="nav-link" id="nav-link-about">About</a>
+        </li>
+        <li>
+          <a href="#projects" class="nav-link" id="nav-link-projects"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a href="#contact" class="nav-link" id="nav-link-contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="grid-100vh-rows">
+    <section class="intro grid-2-cols" id="intro">
+      <div class="intro-text">
+        <div class="intro-text-title">
+          <h3>Hello!</h3>
+          <h1>I'm Peter</h1>
+          <h3><strong>C# developer</strong></h3>
+        </div>
+        <p>
+          A passionate developer from the Netherlands with a love for crafting
+          efficient and innovative solutions. Explore my portfolio to see my
+          latest projects and how I bring ideas to life through code.
+        </p>
+        <div class="intro-btns">
+          <a href="#contact" class="btn intro-btn">Contact me</a>
+          <a href="#projects" class="nav-link">Projects</a>
+        </div>
+      </div>
+      <div class="intro-img-wrapper">
+        <div class="intro-img">
+          <img src="/static/img/peter.jpg" alt="Head photo" />
+        </div>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <div class="grid-2-cols">
+        <div class="about-header">
+          <h2>About me</h2>
+        </div>
+        <div class="about-text">
+          <p>
+            Hi again, I’m Peter, 33 years old, married, and a dad to two awesome
+            daughters. I’ve been working as a technical application manager for
+            the past five years, and I’ve learned a ton about IT systems. It’s
+            also got me really interested in diving into software development.
+          </p>
+          <p>
+            I’m aiming to become a software developer, so I’ve been getting into
+            C# since 2023. It’s quickly become one of my favorite things to do.
+            I’m excited to keep pushing my career in this direction.
+          </p>
+          <p>
+            When I’m not working, I’m into sports like running and fitness. It
+            helps me stay active and clear my head. Balancing work, family, and
+            my hobbies keeps me energized and motivated.
+          </p>
+        </div>
+        <div class="about-list-wrapper">
+          <ul id="about-list">
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
+                    ></path>
+                  </svg>
+                  <p class="about-item-text">Name:</p>
+                </div>
+                <p class="about-item-text">Peter Baan</p>
+              </div>
             </li>
-            <li>
-              <a href="#projects" class="nav-link" id="nav-link-projects"
-                >Projects</a
-              >
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.94l-4.42,2.22a8,8,0,0,1-7.16-14.32l16-8A8,8,0,0,1,112,120Zm59.16,30.45L152,176h16a8,8,0,0,1,0,16H136a8,8,0,0,1-6.4-12.8l28.78-38.37A8,8,0,1,0,145.07,132a8,8,0,1,1-13.85-8A24,24,0,0,1,176,136,23.76,23.76,0,0,1,171.16,150.45Z"
+                    ></path>
+                  </svg>
+                  <span class="about-item-text">Age:</span>
+                </div>
+                <span class="about-item-text">33</span>
+              </div>
             </li>
-            <li>
-              <a href="#contact" class="nav-link" id="nav-link-contact"
-                >Contact</a
-              >
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"
+                    ></path>
+                  </svg>
+                  <span class="about-item-text">Residence:</span>
+                </div>
+                <span class="about-item-text">Netherlands</span>
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"
+                    ></path>
+                  </svg>
+                  <span class="about-item-text">E-mail:</span>
+                </div>
+                <span class="about-item-text">peter.baan@outlook.com</span>
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
+                    ></path>
+                  </svg>
+                  <span class="about-item-text">GitHub:</span>
+                </div>
+                <span class="about-item-text"
+                  >https://github.com/peter1891</span
+                >
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="grid-2-cols">
+                <div class="about-item-header">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="about-icon"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"
+                    ></path>
+                  </svg>
+                  <span class="about-item-text">LinkedIn:</span>
+                </div>
+                <span class="about-item-text"
+                  >https://www.linkedin.com/in/peter-baan-57219652/</span
+                >
+              </div>
             </li>
           </ul>
-        </nav>
-      </header>
-      <main class="grid-100vh-rows">
-        <section class="intro grid-2-cols" id="intro">
-          <div class="intro-text">
-            <div class="intro-text-title">
-              <h3>Hello!</h3>
-              <h1>I'm Peter</h1>
-              <h3><strong>C# developer</strong></h3>
-            </div>
+        </div>
+      </div>
+    </section>
+    <section class="projects" id="projects">
+      <div class="projects-wrapper">
+        <div class="projects-title">
+          <h2>Projects</h2>
+        </div>
+        <div class="project">
+          <img src="/static/img/peterbaan.dev_01.jpg" alt="Project photo" />
+          <div class="project-text">
+            <h4>www.peterbaan.dev</h4>
+            <p>My portfolio website</p>
+            <a href="#" class="btn project-btn-open">More details</a>
+          </div>
+        </div>
+      </div>
+      <dialog class="project-modal" id="project-modal">
+        <div class="project-modal-wrapper grid-3-cols">
+          <div class="project-modal-text">
+            <h2>www.peterbaan.dev</h2>
             <p>
-              A passionate developer from the Netherlands with a love for
-              crafting efficient and innovative solutions. Explore my portfolio
-              to see my latest projects and how I bring ideas to life through
-              code.
+              A showcase of my development projects, primarily in C#, with
+              additional examples in other languages and technologies. This
+              portfolio highlights my skills in creating desktop applications,
+              websites, and services. Each project features a brief description,
+              key features, and the problem it addresses, demonstrating my
+              proficiency and dedication to software development.
             </p>
-            <div class="intro-btns">
-              <a href="#contact" class="btn intro-btn">Contact me</a>
-              <a href="#projects" class="nav-link">Projects</a>
+            <span>Added on: 02-08-2024</span>
+            <div class="project-modal-btn">
+              <a
+                href="https://github.com/peter1891/www.peterbaan.dev"
+                target="_blank"
+                class="btn"
+                >Github</a
+              >
+              <a href="#" class="btn-light project-btn-close">Close</a>
             </div>
           </div>
-          <div class="intro-img-wrapper">
-            <div class="intro-img">
-              <img src="/static/img/peter.jpg" alt="Head photo" />
-            </div>
-          </div>
-        </section>
-        <section class="about" id="about">
-          <div class="grid-2-cols">
-            <div class="about-header">
-              <h2>About me</h2>
-            </div>
-            <div class="about-text">
-              <p>
-                Hi again, I’m Peter, 33 years old, married, and a dad to two
-                awesome daughters. I’ve been working as a technical application
-                manager for the past five years, and I’ve learned a ton about IT
-                systems. It’s also got me really interested in diving into
-                software development.
-              </p>
-              <p>
-                I’m aiming to become a software developer, so I’ve been getting
-                into C# since 2023. It’s quickly become one of my favorite
-                things to do. I’m excited to keep pushing my career in this
-                direction.
-              </p>
-              <p>
-                When I’m not working, I’m into sports like running and fitness.
-                It helps me stay active and clear my head. Balancing work,
-                family, and my hobbies keeps me energized and motivated.
-              </p>
-            </div>
-            <div class="about-list-wrapper">
-              <ul id="about-list">
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"
-                        ></path>
-                      </svg>
-                      <p class="about-item-text">Name:</p>
-                    </div>
-                    <p class="about-item-text">Peter Baan</p>
-                  </div>
-                </li>
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.94l-4.42,2.22a8,8,0,0,1-7.16-14.32l16-8A8,8,0,0,1,112,120Zm59.16,30.45L152,176h16a8,8,0,0,1,0,16H136a8,8,0,0,1-6.4-12.8l28.78-38.37A8,8,0,1,0,145.07,132a8,8,0,1,1-13.85-8A24,24,0,0,1,176,136,23.76,23.76,0,0,1,171.16,150.45Z"
-                        ></path>
-                      </svg>
-                      <span class="about-item-text">Age:</span>
-                    </div>
-                    <span class="about-item-text">33</span>
-                  </div>
-                </li>
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M240,208H224V136l2.34,2.34A8,8,0,0,0,237.66,127L139.31,28.68a16,16,0,0,0-22.62,0L18.34,127a8,8,0,0,0,11.32,11.31L32,136v72H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,120l80-80,80,80v88H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48Zm96,88H112V160h32Z"
-                        ></path>
-                      </svg>
-                      <span class="about-item-text">Residence:</span>
-                    </div>
-                    <span class="about-item-text">Netherlands</span>
-                  </div>
-                </li>
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"
-                        ></path>
-                      </svg>
-                      <span class="about-item-text">E-mail:</span>
-                    </div>
-                    <span class="about-item-text">peter.baan@outlook.com</span>
-                  </div>
-                </li>
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
-                        ></path>
-                      </svg>
-                      <span class="about-item-text">GitHub:</span>
-                    </div>
-                    <span class="about-item-text"
-                      >https://github.com/peter1891</span
-                    >
-                  </div>
-                </li>
-                <li class="about-item">
-                  <div class="grid-2-cols">
-                    <div class="about-item-header">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="about-icon"
-                        viewBox="0 0 256 256"
-                      >
-                        <path
-                          d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"
-                        ></path>
-                      </svg>
-                      <span class="about-item-text">LinkedIn:</span>
-                    </div>
-                    <span class="about-item-text"
-                      >https://www.linkedin.com/in/peter-baan-57219652/</span
-                    >
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section class="projects" id="projects">
-          <div class="projects-wrapper">
-            <div class="projects-title">
-              <h2>Projects</h2>
-            </div>
-            <div class="project">
-              <img src="/static/img/peterbaan.dev_01.jpg" alt="Project photo" />
-              <div class="project-text">
-                <h4>www.peterbaan.dev</h4>
-                <p>My portfolio website</p>
-                <a href="#" class="btn project-btn-open">More details</a>
+          <div class="project-modal-image">
+            <div class="image-slider">
+              <button
+                class="image-slider-btn image-slider-btn-left image-slider-btn-hidden"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                  <path
+                    d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="image-slider-wrapper">
+                <ul class="image-slider-list">
+                  <li class="image-slider-item image-slider-current">
+                    <img
+                      src="/static/img/peterbaan.dev_01.jpg"
+                      alt="Printscreen landing section"
+                    />
+                  </li>
+                  <li class="image-slider-item">
+                    <img
+                      src="/static/img/peterbaan.dev_02.jpg"
+                      alt="Printscreen about section"
+                    />
+                  </li>
+                  <li class="image-slider-item">
+                    <img
+                      src="/static/img/peterbaan.dev_03.jpg"
+                      alt="Printscreen contact section"
+                    />
+                  </li>
+                </ul>
               </div>
+              <button class="image-slider-btn image-slider-btn-right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                  <path
+                    d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <div class="image-slider-nav">
+              <button
+                class="image-slider-indicator image-slider-current"
+              ></button>
+              <button class="image-slider-indicator"></button>
+              <button class="image-slider-indicator"></button>
             </div>
           </div>
-          <dialog class="project-modal" id="project-modal">
-            <div class="project-modal-wrapper grid-3-cols">
-              <div class="project-modal-text">
-                <h2>www.peterbaan.dev</h2>
-                <p>
-                  A showcase of my development projects, primarily in C#, with
-                  additional examples in other languages and technologies. This
-                  portfolio highlights my skills in creating desktop
-                  applications, websites, and services. Each project features a
-                  brief description, key features, and the problem it addresses,
-                  demonstrating my proficiency and dedication to software
-                  development.
-                </p>
-                <span>Added on: 02-08-2024</span>
-                <div class="project-modal-btn">
-                  <a
-                    href="https://github.com/peter1891/www.peterbaan.dev"
-                    target="_blank"
-                    class="btn"
-                    >Github</a
-                  >
-                  <a href="#" class="btn-light project-btn-close">Close</a>
-                </div>
-              </div>
-              <div class="project-modal-image">
-                <div class="image-slider">
-                  <button
-                    class="image-slider-btn image-slider-btn-left image-slider-btn-hidden"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
-                      ></path>
-                    </svg>
-                  </button>
-                  <div class="image-slider-wrapper">
-                    <ul class="image-slider-list">
-                      <li class="image-slider-item image-slider-current">
-                        <img
-                          src="/static/img/peterbaan.dev_01.jpg"
-                          alt="Printscreen landing section"
-                        />
-                      </li>
-                      <li class="image-slider-item">
-                        <img
-                          src="/static/img/peterbaan.dev_02.jpg"
-                          alt="Printscreen about section"
-                        />
-                      </li>
-                      <li class="image-slider-item">
-                        <img
-                          src="/static/img/peterbaan.dev_03.jpg"
-                          alt="Printscreen contact section"
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                  <button class="image-slider-btn image-slider-btn-right">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-                <div class="image-slider-nav">
-                  <button
-                    class="image-slider-indicator image-slider-current"
-                  ></button>
-                  <button class="image-slider-indicator"></button>
-                  <button class="image-slider-indicator"></button>
-                </div>
-              </div>
-            </div>
-          </dialog>
-        </section>
-        <section class="contact" id="contact">
-          <div class="contact-wrapper grid-2-cols">
-            <form
-              action="{{ url_for('index') }}"
-              class="contact-form"
-              method="POST"
-              novalidate
-            >
-              <div class="contact-form-title">
-                <h3>Get in touch</h3>
-                <p>
-                  Got a question or want to get in touch? Send me a message and
-                  I’ll get back to you as soon as I can!
-                </p>
-              </div>
-              {{ form.csrf_token }} {{ form.name(placeholder="Name",
-              class="contact-form-input contact-form-name") }} {{
-              form.email(placeholder="Email", class="contact-form-input
-              contact-form-email") }} {{ form.subject(placeholder="Subject",
-              class="contact-form-input contact-form-subject") }} {{
-              form.message(placeholder="Message", class="contact-form-input
-              contact-form-message") }} {{ form.send(class="contact-form-btn")
-              }}
-            </form>
+        </div>
+      </dialog>
+    </section>
+    <section class="contact" id="contact">
+      <div class="contact-wrapper grid-2-cols">
+        <form
+          action="{{ url_for('index') }}"
+          class="contact-form"
+          method="POST"
+          novalidate
+        >
+          <div class="contact-form-title">
+            <h3>Get in touch</h3>
+            <p>
+              Got a question or want to get in touch? Send me a message and I’ll
+              get back to you as soon as I can!
+            </p>
           </div>
-        </section>
-      </main>
-      <footer>
-        <p>Copyright © {{ year }} by Peter Baan.</p>
-      </footer>
-    </div>
-    <script src="/static/js/script.js"></script>
-  </body>
-</html>
+          {{ form.csrf_token }} {{ form.name(placeholder="Name",
+          class="contact-form-input contact-form-name") }} {{
+          form.email(placeholder="Email", class="contact-form-input
+          contact-form-email") }} {{ form.subject(placeholder="Subject",
+          class="contact-form-input contact-form-subject") }} {{
+          form.message(placeholder="Message", class="contact-form-input
+          contact-form-message") }} {{ form.send(class="contact-form-btn") }}
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright © {{ year }} by Peter Baan.</p>
+  </footer>
+</div>
+{% endblock %}
