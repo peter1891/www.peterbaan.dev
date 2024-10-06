@@ -32,21 +32,30 @@ body {
 }
 
 h1 {
+  font-size: 52px;
   letter-spacing: -2px;
   font-weight: 700;
 }
 
 h2 {
+  font-size: 20px;
   letter-spacing: -1px;
+  white-space: nowrap;
 }
 
 h3 {
   letter-spacing: -1px;
 }
 
-p {
+p,
+span {
+  font-size: 12px;
   line-height: 1.4;
   margin-bottom: 24px;
+}
+
+a {
+  font-size: 14px;
 }
 
 strong {
@@ -86,7 +95,7 @@ dialog::backdrop {
 
 .btn:link,
 .btn:visited {
-  padding: 8px 12px;
+  padding: 6px 10px;
   text-decoration: none;
   color: #fff;
   background-color: #1864ab;
@@ -121,7 +130,7 @@ dialog::backdrop {
   text-decoration: none;
   color: #343a40;
   letter-spacing: 1px;
-  margin: 0.5rem 3rem;
+  margin: 0.5rem;
   transition: 0.5s;
 }
 
@@ -139,6 +148,8 @@ dialog::backdrop {
   letter-spacing: 1px;
   margin-right: 24px;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link:link:after,
@@ -169,6 +180,28 @@ dialog::backdrop {
 }
 
 /* -------------------- */
+/* COMPONENT STYLES */
+/* -------------------- */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container main {
+  align-items: center;
+  margin-left: 13px;
+  margin-right: 13px;
+}
+
+.container footer {
+  width: 100%;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+  background-color: #fff;
+}
+
+/* -------------------- */
 /* MEDIA STYLES */
 /* -------------------- */
 
@@ -190,12 +223,32 @@ dialog::backdrop {
     font-size: 14px;
   }
 
+  a {
+    font-size: 16px;
+  }
+
+  .btn:link,
+  .btn:visited {
+    padding: 8px 12px;
+  }
+
   .container nav {
     max-width: 564px;
   }
 
+  .nav-home:link,
+  .nav-home:visited {
+    margin: 0.5rem 3rem;
+  }
+
+  .nav-home h2 {
+    font-size: 30px;
+  }
+
   .container main {
     max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .project-modal {
@@ -260,28 +313,6 @@ dialog::backdrop {
 }
 
 /* -------------------- */
-/* COMPONENT STYLES */
-/* -------------------- */
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-.container main {
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.container footer {
-  width: 100%;
-  padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
-  background-color: #fff;
-}
-
-/* -------------------- */
 /* NAVIGATION STYLES */
 /* -------------------- */
 
@@ -299,10 +330,6 @@ dialog::backdrop {
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
-}
-
-.nav-home h2 {
-  font-size: 30px;
 }
 
 .nav-items {
@@ -440,6 +467,10 @@ dialog::backdrop {
   width: 24px;
   height: 24px;
   margin-right: 12px;
+}
+
+.about-item-text {
+  margin-bottom: 0px;
 }
 
 /* -------------------- */
