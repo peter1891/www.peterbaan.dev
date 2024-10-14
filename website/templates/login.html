@@ -1,0 +1,14 @@
+{% extends "admin.html" %} {% block title %}Login - PeterBaan.dev{% endblock %}
+{% block settings %}
+<main class="grid-100vh-rows">
+  <form action="{{ url_for('login') }}" class="form" method="POST" novalidate>
+    <div class="form-title">
+      <h2>Login</h2>
+    </div>
+    {{ form.csrf_token }} {{ form.username(placeholder="Username",
+    class="form-input form-username") }} {{
+    form.password(placeholder="Password", class="form-input form-password") }}
+    {{ form.login(class="form-btn") }}
+  </form>
+</main>
+{% endblock %}

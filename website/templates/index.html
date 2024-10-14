@@ -59,8 +59,9 @@
           </p>
           <p>
             I’m aiming to become a software developer, so I’ve been getting into
-            C# since 2023. It’s quickly become one of my favorite things to do.
-            I’m excited to keep pushing my career in this direction.
+            C# since 2023 and Python since 2024. It’s quickly become one of my
+            favorite things to do. I’m excited to keep pushing my career in this
+            direction.
           </p>
           <p>
             When I’m not working, I’m into sports like running and fitness. It
@@ -273,11 +274,11 @@
       <div class="contact-wrapper grid-2-cols">
         <form
           action="{{ url_for('index') }}"
-          class="contact-form"
+          class="form"
           method="POST"
           novalidate
         >
-          <div class="contact-form-title">
+          <div class="form-title">
             <h3>Get in touch</h3>
             <p>
               Got a question or want to get in touch? Send me a message and I’ll
@@ -285,12 +286,11 @@
             </p>
           </div>
           {{ form.csrf_token }} {{ form.name(placeholder="Name",
-          class="contact-form-input contact-form-name") }} {{
-          form.email(placeholder="Email", class="contact-form-input
-          contact-form-email") }} {{ form.subject(placeholder="Subject",
-          class="contact-form-input contact-form-subject") }} {{
-          form.message(placeholder="Message", class="contact-form-input
-          contact-form-message") }} {{ form.send(class="contact-form-btn") }}
+          class="form-input form-name") }} {{ form.email(placeholder="Email",
+          class="form-input form-email") }} {{
+          form.subject(placeholder="Subject", class="form-input form-subject")
+          }} {{ form.message(placeholder="Message", class="form-input
+          form-message") }} {{ form.send(class="form-btn") }}
         </form>
       </div>
     </section>
