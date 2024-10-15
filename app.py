@@ -23,7 +23,7 @@ with app.app_context():
 
     if not db.session.execute(db.select(User)).scalars().all():
         password = generate_password_hash(
-            "admin",
+            os.getenv("ADMIN_PASSWORD"),
             method="pbkdf2", 
             salt_length=8
         )
