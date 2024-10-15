@@ -747,9 +747,26 @@ dialog::backdrop {
   font-family: "Inter", sans-serif;
 }
 
+.form-flash-wrapper {
+  height: 16px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
 .form-flash {
   color: #a61e4d;
-  font-size: 10;
+  font-size: 10px;
+  height: 16px;
+  line-height: 16px;
+  margin-bottom: 0px;
+}
+
+.form-flash-icon {
+  fill: #a61e4d;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
 }
 
 .form-btn {

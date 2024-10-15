@@ -19,3 +19,13 @@ class LoginForm(FlaskForm):
     password = PasswordField(description="Password",
                              validators=[DataRequired()])
     login = SubmitField("Login")
+
+class ChangePassForm(FlaskForm):
+    current_password = PasswordField(description="Current password",
+                             validators=[DataRequired()])
+    new_password = PasswordField(description="New password",
+                             validators=[DataRequired()])
+    new_password_check = PasswordField(description="new password again",
+                             validators=[DataRequired()])
+    change = SubmitField("Change")
+    

@@ -1,35 +1,25 @@
-{% extends "base.html" %} {% block title %}Admin - PeterBaan.dev{% endblock %}
-{% block content %}
-<div class="container">
-  <nav id="nav-bar">
-    <a href="#" class="nav-home">
-      <h2>Admin Panel</h2>
-    </a>
-    <ul class="nav-items">
-      {% if logged_in %}
-      <li>
-        <a href="#general" class="nav-link" id="nav-link-about">General</a>
-      </li>
-      <li>
-        <a href="#about" class="nav-link" id="nav-link-projects">About</a>
-      </li>
-      <li>
-        <a href="#projects" class="nav-link" id="nav-link-contact">Projects</a>
-      </li>
-      <li>
-        <a href="{{ url_for('logout') }}" class="nav-link" id="nav-link-logout"
-          >Logout</a
-        >
-      </li>
-      {% else %}
-      <li>
-        <a href="{{ url_for('login') }}" class="nav-link" id="nav-link-contact"
-          >Login</a
-        >
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
-  {% block settings %}{% endblock %}
-</div>
+{% extends "header.html" %} {% block admin %}
+<main class="grid-100vh-rows">
+  <section class="intro grid-2-cols">
+    <div>
+      <form
+        action="{{ url_for('admin') }}"
+        class="form"
+        method="POST"
+        novalidate
+      >
+        <div class="form-title">
+          <h4>Change password</h4>
+        </div>
+        {{ password.csrf_token }} {{
+        password.current_password(placeholder="Current password",
+        class="form-input form-current-password") }} {{
+        password.new_password(placeholder="New password", class="form-input
+        form-email") }} {{ password.new_password_check(placeholder="Again new
+        password", class="form-input form-subject") }} {{
+        password.change(class="form-btn") }}
+      </form>
+    </div>
+  </section>
+</main>
 {% endblock %}
