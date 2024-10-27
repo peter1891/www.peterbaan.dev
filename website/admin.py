@@ -166,6 +166,7 @@ def edit_attribute(att_type, att_id):
         title=template_title,
         form=attribute_form,
         attribute=attribute,
+        logged_in=current_user.is_authenticated
     )
 
 @admin.route("/delete/<att_type>/<int:att_id>")

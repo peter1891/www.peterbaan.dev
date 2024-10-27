@@ -139,23 +139,23 @@ dialog::backdrop {
 .btn-line:visited {
   padding: 4px 8px;
   text-decoration: none;
-  color: #fff;
-  background-color: #1864ab;
+  color: #868e96;
+  border: 2px solid #868e96;
   display: inline-block;
   transition: 0.5s;
 }
 
 .btn-line:hover,
 .btn-line:active {
-  background-color: #1971c2;
+  background-color: #f1f3f5;
   transition: 0.5s;
 }
 
 .btn-line-icon {
-  fill: #fff;
+  fill: #868e96;
   width: 20px;
   height: 20px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .nav-home:link,
@@ -689,10 +689,11 @@ dialog::backdrop {
 }
 
 .admin-component-item-dots {
+  fill: #868e96;
   height: 32px;
   width: 32px;
   margin-left: 4px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .admin-component-item .grid-2-cols {
