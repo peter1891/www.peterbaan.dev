@@ -195,9 +195,9 @@
           </div>
         </div>
       </div>
-      <dialog class="project-modal" id="project-modal">
-        <div class="project-modal-wrapper grid-3-cols">
-          <div class="project-modal-text">
+      <dialog class="modal" id="project-modal">
+        <div class="modal-wrapper grid-3-cols">
+          <div class="modal-text">
             <h2>www.peterbaan.dev</h2>
             <p>
               A showcase of my development projects, primarily in C#, with
@@ -208,7 +208,7 @@
               proficiency and dedication to software development.
             </p>
             <span>Added on: 02-08-2024</span>
-            <div class="project-modal-btn">
+            <div class="modal-btn">
               <a
                 href="https://github.com/peter1891/www.peterbaan.dev"
                 target="_blank"
@@ -273,7 +273,7 @@
     <section class="contact" id="contact">
       <div class="contact-wrapper grid-2-cols">
         <form
-          action="{{ url_for('index') }}"
+          action="{{ url_for('view.index') }}"
           class="form"
           method="POST"
           novalidate
@@ -290,7 +290,7 @@
           class="form-input form-email") }} {{
           form.subject(placeholder="Subject", class="form-input form-subject")
           }} {{ form.message(placeholder="Message", class="form-input
-          form-message") }} {{ form.send(class="form-btn") }}
+          form-textfield") }} {{ form.send(class="form-btn") }}
         </form>
       </div>
     </section>
@@ -299,4 +299,5 @@
     <p>Copyright © {{ year }} by Peter Baan.</p>
   </footer>
 </div>
+<script src="/static/js/script_main.js"></script>
 {% endblock %}

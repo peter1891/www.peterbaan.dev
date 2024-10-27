@@ -1,24 +1,205 @@
 {% extends "header.html" %} {% block admin %}
 <main class="grid-100vh-rows">
-  <section class="intro grid-2-cols">
-    <div>
-      <form
-        action="{{ url_for('admin') }}"
-        class="form"
-        method="POST"
-        novalidate
-      >
-        <div class="form-title">
-          <h4>Change password</h4>
+  <section>
+    <div class="grid-2-cols admin-container-top">
+      <div class="admin-general-title">
+        <a class="admin-container-anchor" id="general"></a>
+        <h4>General settings</h4>
+      </div>
+      <div class="admin-general-form">
+        <form
+          action="{{ url_for('admin') }}"
+          class="form"
+          method="POST"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          {{ general_form.csrf_token }}
+          <div class="form-row">
+            {{ general_form.website_title.label(class="form-label") }} {{
+            general_form.website_title(class="form-input") }}
+          </div>
+          <div class="form-row">
+            {{ general_form.firstname.label(class="form-label") }} {{
+            general_form.firstname(class="form-input") }}
+          </div>
+          <div class="form-row">
+            {{ general_form.lastname.label(class="form-label") }} {{
+            general_form.lastname(class="form-input") }}
+          </div>
+          <div class="form-row">
+            {{ general_form.job_title.label(class="form-label") }} {{
+            general_form.job_title(class="form-input") }}
+          </div>
+          <div class="form-row">
+            {{ general_form.intro_text.label(class="form-label") }} {{
+            general_form.intro_text(class="form-input form-textfield") }}
+          </div>
+          <div class="form-row">
+            {{ general_form.portrait.label(class="form-label") }}
+            <div class="admin-component-box">
+              <img src="{{ general_form.portrait.data }}" alt="Head photo" />
+            </div>
+            {{ general_form.portrait(class="form-input") }}
+          </div>
+          {{ general_form.save_general(class="form-btn") }}
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div class="grid-2-cols admin-container">
+      <div class="admin-about-title">
+        <a class="admin-container-anchor" id="about"></a>
+        <h4>About settings</h4>
+      </div>
+      <div class="admin-about-form">
+        <form
+          action="{{ url_for('admin') }}"
+          class="form"
+          method="POST"
+          novalidate
+        >
+          {{ about_form.csrf_token }}
+          <div class="form-row">
+            {{ about_form.about_text.label(class="form-label") }} {{
+            about_form.about_text(class="form-input form-textfield") }}
+          </div>
+          <div class="form-row">
+            <p class="form-label">Attributes</p>
+            <div class="admin-component-list-wrapper">
+              <ul class="admin-component-list">
+                {% if not configuration.attributes %}
+                <li>No Attributes</li>
+                {% else %} {% for attribute in configuration.attributes %} {% if
+                attribute.is_type == "attribute" %}
+                <li class="about-item">
+                  <div class="grid-2-cols">
+                    <div class="about-item-header">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="about-icon"
+                        viewBox="0 0 256 256"
+                      >
+                        <path d="{{ attribute.icon }}"></path>
+                      </svg>
+                      <span class="about-item-text"
+                        >{{ attribute.key.capitalize() }}</span
+                      >
+                    </div>
+                    <span class="about-item-text">{{ attribute.value }}</span>
+                  </div>
+                </li>
+                {% endif %} {% endfor %} {%endif%}
+              </ul>
+            </div>
+          </div>
+          <a href="#" class="btn-light add-attribute-btn-open">Add attribute</a>
+          <div class="form-row">
+            <p class="form-label">Socials</p>
+            <div class="admin-component-list-wrapper">
+              <ul class="admin-component-list">
+                {% if not configuration.attributes %}
+                <li>No Socials</li>
+                {% else %}{% for social in configuration.attributes %} {% if
+                social.is_type == "social" %}
+                <li>{{ social.value }}</li>
+                {% endif %} {% endfor %} {% endif %}
+              </ul>
+            </div>
+          </div>
+          <a href="#" class="btn-light add-social-btn-open">Add social media</a>
+          {{ about_form.save_about(class="form-btn") }}
+        </form>
+      </div>
+      <dialog class="modal" id="attribute-modal">
+        <div class="modal-wrapper">
+          <div class="modal-text">
+            <form id="add_attribute_form" class="form" method="POST" novalidate>
+              <div class="form-title">
+                <h3>Add Attribute</h3>
+              </div>
+              {{ add_attribute_form.csrf_token }} {{
+              add_attribute_form.attribute_hidden() }} {{
+              add_attribute_form.attribute_type(class="form-input") }} {{
+              add_attribute_form.attribute_value(class="form-input") }}
+              <div class="modal-btn">
+                {{ add_attribute_form.add_attribute(class="form-btn") }}
+                <a href="#" class="btn-light add-attribute-btn-close">Cancel</a>
+              </div>
+            </form>
+          </div>
         </div>
-        {{ password.csrf_token }} {{
-        password.current_password(placeholder="Current password",
-        class="form-input form-current-password") }} {{
-        password.new_password(placeholder="New password", class="form-input
-        form-email") }} {{ password.new_password_check(placeholder="Again new
-        password", class="form-input form-subject") }} {{
-        password.change(class="form-btn") }}
-      </form>
+      </dialog>
+      <dialog class="modal" id="social-modal">
+        <div class="modal-wrapper grid-3-cols">
+          <div class="modal-btn">
+            <a href="#" class="btn add-social-btn-close">Add</a>
+            <a href="#" class="btn-light add-social-btn-close">Cancel</a>
+          </div>
+        </div>
+      </dialog>
+    </div>
+    <hr />
+    <div class="grid-2-cols admin-container">
+      <div class="admin-projects-title">
+        <a class="admin-container-anchor" id="projects"></a>
+        <h4>Projects settings</h4>
+      </div>
+      <div class="admin-projects-form">
+        <form
+          action="{{ url_for('admin') }}"
+          class="form"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="section" value="projects" />
+          <div class="form-row">
+            <p class="form-label">Projects</p>
+            <div class="admin-component-list-wrapper">
+              <ul class="admin-component-list">
+                {% if not configuration.projects %}
+                <li>No projects</li>
+                {% else %} {% for project in configuration.projects %}
+                <li>{{ social.value }}</li>
+                {% endfor %}{% endif %}
+              </ul>
+            </div>
+          </div>
+          <a href="#" class="btn-light add-project-btn-open">Add new project</a>
+          <button type="submit" class="form-btn">Save</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div class="grid-2-cols admin-container">
+      <div class="admin-password-title form-title">
+        <a class="admin-container-anchor" id="password"></a>
+        <h4>Change password</h4>
+      </div>
+      <div class="admin-password-form">
+        <form
+          action="{{ url_for('admin') }}"
+          class="form"
+          method="POST"
+          novalidate
+        >
+          {{ password.csrf_token }}
+          <div class="form-row">
+            {{ password.current_password.label(class="form-label") }} {{
+            password.current_password(class="form-input", autocomplete="off") }}
+          </div>
+          <div class="form-row">
+            {{ password.new_password.label(class="form-label") }} {{
+            password.new_password(class="form-input", autocomplete="off") }}
+          </div>
+          <div class="form-row">
+            {{ password.new_password_check.label(class="form-label") }} {{
+            password.new_password_check(class="form-input", autocomplete="off")
+            }}
+          </div>
+          {{ password.change_password(class="form-btn") }}
+        </form>
+      </div>
     </div>
   </section>
 </main>

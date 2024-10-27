@@ -3,30 +3,46 @@
 <div class="container">
   <header>
     <nav id="nav-bar">
-      <a href="#" class="nav-home">
+      <a href="{{ url_for('admin.general') }}" class="nav-home">
         <h2>Admin Panel</h2>
       </a>
       <ul class="nav-items">
         {% if logged_in %}
         <li>
-          <a href="#general" class="nav-link" id="nav-link-general">General</a>
+          <a
+            href="{{ url_for('admin.general') }}"
+            class="nav-link {% if request.path == url_for('admin.general') %}active{% endif %}"
+            id="nav-link-general"
+            >General</a
+          >
         </li>
         <li>
-          <a href="#about" class="nav-link" id="nav-link-about">About</a>
+          <a
+            href="{{ url_for('admin.about') }}"
+            class="nav-link {% if request.path == url_for('admin.about') %}active{% endif %}"
+            id="nav-link-about"
+            >About</a
+          >
         </li>
         <li>
-          <a href="#projects" class="nav-link" id="nav-link-projects"
+          <a
+            href="{{ url_for('admin.projects') }}"
+            class="nav-link {% if request.path == url_for('admin.projects') %}active{% endif %}"
+            id="nav-link-projects"
             >Projects</a
           >
         </li>
         <li>
-          <a href="#password" class="nav-link" id="nav-link-password"
+          <a
+            href="{{ url_for('admin.password') }}"
+            class="nav-link {% if request.path == url_for('admin.password') %}active{% endif %}"
+            id="nav-link-password"
             >Password</a
           >
         </li>
         <li>
           <a
-            href="{{ url_for('logout') }}"
+            href="{{ url_for('auth.logout') }}"
             class="nav-link"
             id="nav-link-logout"
             >Logout</a
@@ -35,8 +51,8 @@
         {% else %}
         <li>
           <a
-            href="{{ url_for('login') }}"
-            class="nav-link"
+            href="{{ url_for('auth.login') }}"
+            class="nav-link {% if request.path == url_for('auth.login') %}active{% endif %}"
             id="nav-link-contact"
             >Login</a
           >
@@ -47,7 +63,11 @@
   </header>
   {% block admin %}{% endblock %}
   <footer>
-    <p>Copyright © {{ year }} by Peter Baan.</p>
+    <p>
+      Copyright © {{ year }} by {{ configuration.firstname }} {{
+      configuration.lastname }}.
+    </p>
   </footer>
 </div>
+<script src="/static/js/script_admin.js"></script>
 {% endblock %}

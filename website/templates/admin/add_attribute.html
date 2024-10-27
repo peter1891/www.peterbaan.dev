@@ -1,0 +1,39 @@
+{% extends "header.html" %} {% block admin %}
+<main class="grid-100vh-rows">
+  <section>
+    <div class="grid-1-cols admin-container">
+      <form
+        action="{% if request.path == url_for('admin.add_attribute', att_type='attribute') %}
+        {{ url_for('admin.add_attribute', att_type='attribute') }}
+        {% elif request.path == url_for('admin.add_attribute', att_type='social') %}
+        {{ url_for('admin.add_attribute', att_type='social') }}
+        {% elif request.path == url_for('admin.edit_attribute', att_type='attribute', att_id=attribute.id) %}
+        {{ url_for('admin.edit_attribute', att_type='attribute', att_id=attribute.id) }}
+        {% elif request.path == url_for('admin.edit_attribute', att_type='social', att_id=attribute.id) %}
+        {{ url_for('admin.edit_attribute', att_type='social', att_id=attribute.id) }}
+        {% endif %}"
+        class="form"
+        method="POST"
+        novalidate
+      >
+        <div class="form-title">
+          <h2>{{ title }}</h2>
+        </div>
+        {{ form.csrf_token }}{{ form.attribute_hidden() }}
+        <div class="form-row">
+          {{ form.attribute_type.label(class="form-label") }} {{
+          form.attribute_type(class="form-input") }}
+        </div>
+        <div class="form-row">
+          {{ form.attribute_value.label(class="form-label") }} {{
+          form.attribute_value(class="form-input") }}
+        </div>
+        <div class="modal-btn">
+          {{ form.submit(class="form-btn") }}
+          <a href="{{ url_for('admin.about') }}" class="btn-light">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}

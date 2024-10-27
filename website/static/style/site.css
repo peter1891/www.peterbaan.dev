@@ -67,6 +67,10 @@ svg {
   fill: #1864ab;
 }
 
+hr {
+  border-top: 1px solid #dee2e6;
+}
+
 section {
   display: grid;
   height: 100%;
@@ -75,6 +79,11 @@ section {
 
 dialog::backdrop {
   background-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.grid-1-cols {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .grid-2-cols {
@@ -124,6 +133,29 @@ dialog::backdrop {
 .btn-light:active {
   background-color: #f1f3f5;
   transition: 0.5s;
+}
+
+.btn-line:link,
+.btn-line:visited {
+  padding: 4px 8px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #1864ab;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.btn-line:hover,
+.btn-line:active {
+  background-color: #1971c2;
+  transition: 0.5s;
+}
+
+.btn-line-icon {
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
 }
 
 .nav-home:link,
@@ -247,7 +279,7 @@ dialog::backdrop {
   }
 
   .container main {
-    max-width: 540px;
+    width: 540px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -262,7 +294,7 @@ dialog::backdrop {
     max-width: 744px;
   }
   .container main {
-    max-width: 720px;
+    width: 720px;
   }
 
   .project-modal {
@@ -292,7 +324,7 @@ dialog::backdrop {
     max-width: 984px;
   }
   .container main {
-    max-width: 960px;
+    width: 960px;
   }
 
   .project-modal {
@@ -305,7 +337,7 @@ dialog::backdrop {
     max-width: 1164px;
   }
   .container main {
-    max-width: 1140px;
+    width: 1140px;
   }
 
   .project-modal {
@@ -448,6 +480,10 @@ dialog::backdrop {
   transition: 1s;
 }
 
+#about-list li:last-child {
+  margin-bottom: 0px;
+}
+
 #about-list.onscreen {
   left: 0px;
   opacity: 1;
@@ -457,6 +493,10 @@ dialog::backdrop {
   padding: 8px;
   margin-bottom: 8px;
   border: 1px solid #dee2e6;
+}
+
+.about-item .grid-2-cols {
+  grid-template-columns: 1fr 2fr;
 }
 
 .about-item-header {
@@ -472,6 +512,9 @@ dialog::backdrop {
 
 .about-item-text {
   margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* -------------------- */
@@ -553,22 +596,25 @@ dialog::backdrop {
 /* PROJECTS MODAL STYLES */
 /* -------------------- */
 
-.project-modal {
+.modal {
   padding: 24px;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 100%;
   height: 75vh;
   border: 1px solid #dee2e6;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
 }
 
-.project-modal-wrapper {
+#project-modal {
+  width: 100%;
+}
+
+.modal-wrapper {
   height: 100%;
 }
 
-.project-modal-text {
+.modal-text {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -588,7 +634,7 @@ dialog::backdrop {
   margin-bottom: 8px;
 }
 
-.project-modal-btn {
+.modal-btn {
   display: flex;
   justify-content: flex-start;
   gap: 24px;
@@ -601,6 +647,96 @@ dialog::backdrop {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* -------------------- */
+/* ADMIN COMPONENT STYLES */
+/* -------------------- */
+
+.admin-container {
+  margin-top: 130px;
+  margin-bottom: 40px;
+}
+
+.admin-container-anchor {
+  display: block;
+  position: relative;
+  top: -130px;
+  visibility: hidden;
+}
+
+/* -------------------- */
+/* ADMIN LIST STYLES */
+/* -------------------- */
+
+.admin-component-list-wrapper {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.admin-component-list {
+  list-style: none;
+}
+
+.admin-component-list li:last-child {
+  margin-bottom: 0px;
+}
+
+.admin-component-item {
+  display: flex;
+  align-items: center;
+}
+
+.admin-component-item-dots {
+  height: 32px;
+  width: 32px;
+  margin-left: 4px;
+  margin-top: 2px;
+}
+
+.admin-component-item .grid-2-cols {
+  flex-grow: 1;
+}
+
+.admin-component-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-component-box {
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.admin-component-box img {
+  display: block;
+  width: 100%;
+}
+
+/* -------------------- */
+/* ADMIN STYLES */
+/* -------------------- */
+
+.admin-title {
+  grid-column: 1 / 2;
+}
+
+.admin-form {
+  grid-column: 2 / -1;
+}
+
+/* -------------------- */
+/* ADMIN LOGIN STYLES */
+/* -------------------- */
+
+.admin-login {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* -------------------- */
@@ -711,6 +847,12 @@ dialog::backdrop {
   width: 100%;
 }
 
+.form-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 @media (min-width: 769px) {
   .form {
     grid-column: 1 / 2;
@@ -723,6 +865,11 @@ dialog::backdrop {
 
 .form-title p {
   margin-bottom: 8px;
+}
+
+.form-label {
+  font-size: 12px;
+  margin-bottom: 4px;
 }
 
 .form-input {
@@ -742,8 +889,8 @@ dialog::backdrop {
   color: #868e96;
 }
 
-.form-message {
-  height: 128px;
+.form-textfield {
+  height: 160px;
   font-family: "Inter", sans-serif;
 }
 
@@ -772,7 +919,7 @@ dialog::backdrop {
 .form-btn {
   padding: 8px 12px;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #1864ab;
   cursor: pointer;
   border: none;

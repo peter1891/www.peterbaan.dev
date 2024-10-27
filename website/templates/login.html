@@ -1,32 +1,41 @@
 {% extends "header.html" %} {% block title %}Login - PeterBaan.dev{% endblock %}
 {% block admin %}
 <main class="grid-100vh-rows">
-  <form action="{{ url_for('login') }}" class="form" method="POST" novalidate>
-    <div class="form-title">
-      <h2>Login</h2>
+  <section>
+    <div class="admin-container admin-login">
+      <form
+        action="{{ url_for('auth.login') }}"
+        class="form"
+        method="POST"
+        novalidate
+      >
+        <div class="form-title">
+          <h2>Login</h2>
+        </div>
+        {{ form.csrf_token }} {{ form.username(placeholder="Username",
+        class="form-input form-username") }}
+        <div class="form-row">
+          {{ form.password(placeholder="Password", class="form-input
+          form-password") }}
+          <div class="form-flash-wrapper">
+            {% with messages = get_flashed_messages() %} {% if messages %} {%
+            for message in messages %}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="form-flash-icon"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"
+              ></path>
+            </svg>
+            <p class="form-flash">{{ message }}</p>
+            {% endfor %} {% endif %} {% endwith %}
+          </div>
+        </div>
+        {{ form.login(class="form-btn") }}
+      </form>
     </div>
-    {{ form.csrf_token }} {{ form.username(placeholder="Username",
-    class="form-input form-username") }}
-    <div>
-      {{ form.password(placeholder="Password", class="form-input form-password")
-      }}
-      <div class="form-flash-wrapper">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for
-        message in messages %}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="form-flash-icon"
-          viewBox="0 0 256 256"
-        >
-          <path
-            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"
-          ></path>
-        </svg>
-        <p class="form-flash">{{ message }}</p>
-        {% endfor %} {% endif %} {% endwith %}
-      </div>
-    </div>
-    {{ form.login(class="form-btn") }}
-  </form>
+  </section>
 </main>
 {% endblock %}

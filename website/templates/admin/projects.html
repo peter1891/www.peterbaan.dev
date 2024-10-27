@@ -1,0 +1,35 @@
+{% extends "header.html" %} {% block admin %}
+<main class="grid-100vh-rows">
+  <section>
+    <div class="grid-2-cols admin-container">
+      <div class="admin-title">
+        <h4>Projects settings</h4>
+      </div>
+      <div class="admin-form">
+        <form
+          action="{{ url_for('admin.projects') }}"
+          class="form"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="section" value="projects" />
+          <div class="form-row">
+            <p class="form-label">Projects</p>
+            <div class="admin-component-list-wrapper">
+              <ul class="admin-component-list">
+                {% if not configuration.projects %}
+                <li>No projects</li>
+                {% else %} {% for project in configuration.projects %}
+                <li>{{ social.value }}</li>
+                {% endfor %}{% endif %}
+              </ul>
+            </div>
+          </div>
+          <a href="#" class="btn-light add-project-btn-open">Add new project</a>
+          <button type="submit" class="form-btn">Save</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
