@@ -1,22 +1,23 @@
+from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, SelectField, FileField, HiddenField, SubmitField, Label
 from wtforms.validators import DataRequired, Email, Regexp
 
 class ContactForm(FlaskForm):
     name = StringField(
-        description="Name", 
+        label="Name", 
         validators=[DataRequired()]
     )
     email = StringField(
-        description="Email", 
+        label="Email", 
         validators=[Email()]
     )
     subject = StringField(
-        description="Subject", 
+        label="Subject", 
         validators=[DataRequired()]
     )
     message = TextAreaField(
-        description="Message", 
+        label="Message", 
         validators=[DataRequired()]
         )
     send = SubmitField(
@@ -25,11 +26,11 @@ class ContactForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField(
-        description="Username",
+        label="Username",
         validators=[DataRequired()]
         )
     password = PasswordField(
-        description="Password",
+        label="Password",
         validators=[DataRequired()]
         )
     login = SubmitField(
@@ -37,17 +38,36 @@ class LoginForm(FlaskForm):
     )
 
 class GeneralForm(FlaskForm):
-    website_title = StringField(description="Website title", validators=[DataRequired()])
-    firstname = StringField(description="Firstname", validators=[DataRequired()])
-    lastname = StringField(description="Lastname", validators=[DataRequired()])
-    job_title = StringField(description="Job title", validators=[DataRequired()])
-    intro_text = TextAreaField(description="Intro text", validators=[DataRequired()])
-    portrait = FileField(description="Portrait")
-    save_general = SubmitField("Save")
+    website_title = StringField(
+        label="Website title", 
+        validators=[DataRequired()]
+    )
+    firstname = StringField(
+        label="Firstname", 
+        validators=[DataRequired()]
+    )
+    lastname = StringField(
+        label="Lastname", 
+        validators=[DataRequired()]
+    )
+    job_title = StringField(
+        label="Job title", 
+        validators=[DataRequired()]
+    )
+    intro_text = TextAreaField(
+        label="Intro text", 
+        validators=[DataRequired()]
+    )
+    portrait = FileField(
+        label="Portrait"
+    )
+    save_general = SubmitField(
+        "Save"
+    )
 
 class AboutForm(FlaskForm):
     about_text = TextAreaField(
-        description="About text", 
+        label="About text", 
         validators=[DataRequired()]
     )
     save_about = SubmitField(
@@ -56,11 +76,11 @@ class AboutForm(FlaskForm):
 
 class AttributeForm(FlaskForm):
     attribute_type = SelectField(
-        description="Type", 
+        label="Type", 
         choices=[("age", "Age"), ("email", "E-mail"), ("name", "Name"), ("residence", "Residence")]
     )
     attribute_value = StringField(
-        description="Value",
+        label="Value",
         validators=[DataRequired()]
     )
     attribute_hidden = HiddenField(
@@ -72,15 +92,39 @@ class AttributeForm(FlaskForm):
 
 class SocialForm(FlaskForm):
     attribute_type = SelectField(
-        description="Type", 
+        label="Type", 
         choices=[("facebook", "Facebook"), ("github", "Github"), ("linkedin", "LinkedIn")]
     )
     attribute_value = StringField(
-        description="Value",
+        label="Value",
         validators=[DataRequired()]
     )
     attribute_hidden = HiddenField(
         "Hidden"
+    )
+    submit = SubmitField(
+        "Add"
+    )
+
+class ProjectForm(FlaskForm):
+    project_title = StringField(
+        label="Project title",
+        validators=[DataRequired()],
+    )
+    description_short = StringField(
+        label="Summary",
+        validators=[DataRequired()],
+    )
+    description_long = TextAreaField(
+        label="Description",
+        validators=[DataRequired()],
+    )
+    github_url = StringField(
+        label="Github URL",
+        validators=[DataRequired()],
+    )
+    creation_date = HiddenField(
+        "Creation date"
     )
     submit = SubmitField(
         "Add"

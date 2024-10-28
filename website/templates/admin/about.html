@@ -43,7 +43,7 @@
                   </div>
                   <div class="admin-component-btn">
                     <a
-                      href="{{ url_for('admin.edit_attribute', att_type='attribute', att_id=attribute.id) }}"
+                      href="{{ url_for('admin.store.edit_object', obj_type='attribute', obj_id=attribute.id) }}"
                       class="btn-line"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@
                         ></path></svg
                     ></a>
                     <a
-                      href="{{ url_for('admin.delete_attribute', att_type='social', att_id=attribute.id) }}"
+                      href="{{ url_for('admin.store.delete_object', obj_type='attribute', obj_id=attribute.id) }}"
                       class="btn-line"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
             </div>
           </div>
           <a
-            href="{{ url_for('admin.add_attribute', att_type='attribute') }}"
+            href="{{ url_for('admin.store.add_object', obj_type='attribute') }}"
             class="btn-light"
             >Add attribute</a
           >
@@ -114,7 +114,7 @@
                   </div>
                   <div class="admin-component-btn">
                     <a
-                      href="{{ url_for('admin.edit_attribute', att_type='social', att_id=social.id) }}"
+                      href="{{ url_for('admin.store.edit_object', obj_type='social', obj_id=social.id) }}"
                       class="btn-line"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@
                         ></path></svg
                     ></a>
                     <a
-                      href="{{ url_for('admin.delete_attribute', att_type='social', att_id=social.id) }}"
+                      href="{{ url_for('admin.store.delete_object', obj_type='social', obj_id=social.id) }}"
                       class="btn-line"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@
             </div>
           </div>
           <a
-            href="{{ url_for('admin.add_attribute', att_type='social') }}"
+            href="{{ url_for('admin.store.add_object', obj_type='social') }}"
             class="btn-light"
             >Add social media</a
           >

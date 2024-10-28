@@ -8,10 +8,13 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from . import db, ICON_DICT
+from .obj_store import store
 from .core.form import GeneralForm, AboutForm, AttributeForm, SocialForm, ChangePassForm
-from .models import Attribute, Configuration, Project, User
+from .core.models import Attribute, Configuration, Project, User
 
 admin = Blueprint("admin", __name__)
+
+admin.register_blueprint(store)
 
 @admin.route("/general", methods=["GET", "POST"])
 @login_required
@@ -79,115 +82,13 @@ def about():
         logged_in=current_user.is_authenticated
     )
 
-@admin.route("/add/<att_type>", methods=["GET", "POST"])
-@login_required
-def add_attribute(att_type):
-    configuration = db.session.execute(db.select(Configuration).where(Configuration.id == "1")).scalar()
-
-    if att_type == "attribute":
-        attribute_form = AttributeForm(
-            attribute_hidden = "attribute"
-        )
-
-        template_title = "Add Attribute"
-    elif att_type == "social":
-        attribute_form = SocialForm(
-            attribute_hidden = "social"
-        )
-
-        template_title = "Add Social Media"
-
-
-    if attribute_form.validate_on_submit():
-        print("Saving attribute")
-
-        icon = ICON_DICT[attribute_form.attribute_type.data]
-
-        attribute = Attribute(
-            key = attribute_form.attribute_type.data,
-            config_id = configuration.id,
-            value = attribute_form.attribute_value.data,
-            is_type = attribute_form.attribute_hidden.data,
-            icon = icon,
-            order = 0,
-        )
-
-        db.session.add(attribute)
-        db.session.commit()
-        print("Attribute saved")
-
-        return redirect(url_for("admin.about"))
-
-    return render_template(
-        "admin/add_attribute.html",
-        configuration=configuration, 
-        title=template_title,
-        form=attribute_form,
-        year=datetime.now().year, 
-        logged_in=current_user.is_authenticated
-    )
-
-@admin.route("/edit/<att_type>/<int:att_id>", methods=["GET", "POST"])
-@login_required
-def edit_attribute(att_type, att_id):
-    configuration = db.session.execute(db.select(Configuration).where(Configuration.id == "1")).scalar()
-
-    attribute = db.session.execute(db.select(Attribute).where(Attribute.id == att_id)).scalar()
-
-    if att_type == "attribute":
-        attribute_form = AttributeForm(
-            attribute_type = attribute.key,
-            attribute_value = attribute.value,
-            attribute_hidden = "attribute",
-        )
-
-        template_title = "Edit Attribute"
-    elif att_type == "social":
-        attribute_form = SocialForm(
-            attribute_type = attribute.key,
-            attribute_value = attribute.value,
-            attribute_hidden = "social",
-        )
-
-        template_title = "Edit Social Media"
-
-    attribute_form.submit.label.text = "Save"
-
-    if attribute_form.validate_on_submit():
-        attribute.key = attribute_form.attribute_type.data
-        attribute.value = attribute_form.attribute_value.data
-        db.session.commit()
-
-        return redirect(url_for("admin.about"))
-
-    return render_template(
-        "admin/add_attribute.html",
-        configuration=configuration, 
-        title=template_title,
-        form=attribute_form,
-        attribute=attribute,
-        logged_in=current_user.is_authenticated
-    )
-
-@admin.route("/delete/<att_type>/<int:att_id>")
-@login_required
-def delete_attribute(att_type, att_id):
-    attribute_to_delete = db.session.execute(db.select(Attribute).where(Attribute.id == att_id)).scalar()
-    db.session.delete(attribute_to_delete)
-    db.session.commit()
-    return redirect(url_for("admin.about"))
-
-@admin.route("/projects", methods=["GET", "POST"])
+@admin.route("/projects")
 @login_required
 def projects():
     configuration = db.session.execute(db.select(Configuration).where(Configuration.id == "1")).scalar()
 
     projects_list = db.session.execute(db.select(Project)
                                        .order_by(desc(Project.creation_date))).scalars().all()
-    
-    if request.form.get("section") == "projects":
-        print("Saving projects")
-        print("Projects saved")
 
     return render_template(
         "admin/projects.html",

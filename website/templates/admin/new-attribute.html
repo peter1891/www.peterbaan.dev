@@ -3,14 +3,14 @@
   <section>
     <div class="grid-1-cols">
       <form
-        action="{% if request.path == url_for('admin.add_attribute', att_type='attribute') %}
-        {{ url_for('admin.add_attribute', att_type='attribute') }}
-        {% elif request.path == url_for('admin.add_attribute', att_type='social') %}
-        {{ url_for('admin.add_attribute', att_type='social') }}
-        {% elif request.path == url_for('admin.edit_attribute', att_type='attribute', att_id=attribute.id) %}
-        {{ url_for('admin.edit_attribute', att_type='attribute', att_id=attribute.id) }}
-        {% elif request.path == url_for('admin.edit_attribute', att_type='social', att_id=attribute.id) %}
-        {{ url_for('admin.edit_attribute', att_type='social', att_id=attribute.id) }}
+        action="{% if request.path == url_for('admin.store.add_object', obj_type='attribute') %}
+        {{ url_for('admin.store.add_object', obj_type='attribute') }}
+        {% elif request.path == url_for('admin.store.add_object', obj_type='social') %}
+        {{ url_for('admin.store.add_object', obj_type='social') }}
+        {% elif request.path == url_for('admin.store.edit_object', obj_type='attribute', obj_id=object.id) %}
+        {{ url_for('admin.store.edit_object', obj_type='attribute', obj_id=object.id) }}
+        {% elif request.path == url_for('admin.store.edit_object', obj_type='social', obj_id=object.id) %}
+        {{ url_for('admin.store.edit_object', obj_type='social', obj_id=object.id) }}
         {% endif %}"
         class="form"
         method="POST"

@@ -77,6 +77,10 @@ section {
   align-items: center;
 }
 
+section .grid-1-cols {
+  width: 50%;
+}
+
 dialog::backdrop {
   background-color: hsla(0, 0%, 100%, 0.5);
 }
@@ -738,6 +742,33 @@ dialog::backdrop {
 .admin-login {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* -------------------- */
+/* ADMIN PROJECT STYLES */
+/* -------------------- */
+
+.admin-project-item {
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.admin-project-item .grid-2-cols {
+  grid-template-columns: 2fr 1fr;
+}
+
+.admin-project-item-header {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.admin-project-item-text {
+  margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* -------------------- */

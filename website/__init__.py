@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask, redirect, url_for
+from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -24,7 +25,10 @@ def create_app():
     app.config["SECRET_KEY"] = os.getenv("APP_SECRET")
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("APP_DATABASE")
     app.config["UPLOAD_FOLDER"] = os.getenv("UPLOAD_FOLDER")
+
     db.init_app(app)
+
+    ckeditor = CKEditor(app)
 
     from .admin import admin
     from .auth import auth
@@ -34,7 +38,7 @@ def create_app():
     app.register_blueprint(admin, url_prefix="/admin")
     app.register_blueprint(auth, url_prefix="/auth")
 
-    from .models import Attribute, Configuration, Project, User
+    from .core.models import Attribute, Configuration, Project, User
 
     with app.app_context():
         db.create_all()
@@ -59,7 +63,7 @@ def create_app():
     return app
 
 def setup_user():
-    from .models import User
+    from .core.models import User
 
     password = generate_password_hash(
         os.getenv("ADMIN_PASSWORD"),

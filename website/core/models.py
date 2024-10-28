@@ -1,10 +1,10 @@
 from datetime import datetime
 from flask_login import UserMixin
 import re
-from sqlalchemy import Integer, String, DateTime, ForeignKey
+from sqlalchemy import Integer, String, Date, ForeignKey
 from sqlalchemy.orm import mapped_column, relationship
 
-from . import db
+from .. import db
 
 class Attribute(db.Model):
     __tablename__ = "web_attributes"
@@ -45,7 +45,8 @@ class Project(db.Model):
     title = mapped_column(String, nullable=False)
     description_short = mapped_column(String, nullable=False)
     description_long = mapped_column(String, nullable=False)
-    creation_date = mapped_column(DateTime, default=datetime.now)
+    github_url = mapped_column(String, nullable=False)
+    creation_date = mapped_column(Date, default=datetime.now)
 
 class User(UserMixin, db.Model):
     __tablename__ = "admin_user"
