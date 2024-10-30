@@ -123,6 +123,9 @@ class ProjectForm(FlaskForm):
         label="Github URL",
         validators=[DataRequired()],
     )
+    banner_img = FileField(
+        label="Banner image"
+    )
     creation_date = HiddenField(
         "Creation date"
     )

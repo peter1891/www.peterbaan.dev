@@ -44,7 +44,7 @@ def create_app():
         db.create_all()
 
         if not db.session.execute(db.select(User)).scalars().all():
-            setup_user()
+            setup_db()
 
     login_manager = LoginManager()
     login_manager.init_app(app)
@@ -62,8 +62,26 @@ def create_app():
 
     return app
 
-def setup_user():
-    from .core.models import User
+def setup_db():
+
+    from .core.models import Configuration, Image, User
+
+    image = Image(
+        location = "/static/img/peter.jpg",
+        caption = "Banner image",
+    )
+
+    configuration = Configuration(
+        website_title = "New Website",
+        firstname = "Firstname",
+        lastname = "Lastname",
+        job_title = "Job Title",
+        intro_text = "",
+        portrait = image,
+        about_text = "",
+    )
+
+    db.session.add(configuration)
 
     password = generate_password_hash(
         os.getenv("ADMIN_PASSWORD"),

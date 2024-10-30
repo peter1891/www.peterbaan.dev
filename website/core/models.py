@@ -27,7 +27,7 @@ class Configuration(db.Model):
     lastname = mapped_column(String, nullable=False)
     job_title = mapped_column(String, nullable=False)
     intro_text = mapped_column(String, nullable=False)
-    portrait = mapped_column(String, nullable=False)
+    portrait = relationship("Image", uselist=False, back_populates="portrait")
     about_text = mapped_column(String, nullable=False)
     attributes = relationship("Attribute", back_populates="config")
     projects = relationship("Project", back_populates="config")
@@ -35,6 +35,17 @@ class Configuration(db.Model):
     def validate_image(field):
         if field.data:
             field.data = re.sub(r"[^a-z0-9_.-]", "_", field.data)
+
+class Image(db.Model):
+    __tablename__ = "web_images"
+    
+    id = mapped_column(Integer, primary_key=True)
+    portrait_id = mapped_column(ForeignKey("web_configuration.id"))
+    portrait = relationship("Configuration", back_populates="portrait")
+    project_id = mapped_column(ForeignKey("web_projects.id"))
+    project = relationship("Project", back_populates="images")
+    location = mapped_column(String, nullable=False)
+    caption = mapped_column(String, nullable=False)
 
 class Project(db.Model):
     __tablename__ = "web_projects"
@@ -47,6 +58,7 @@ class Project(db.Model):
     description_long = mapped_column(String, nullable=False)
     github_url = mapped_column(String, nullable=False)
     creation_date = mapped_column(Date, default=datetime.now)
+    images = relationship("Image", back_populates="project")
 
 class User(UserMixin, db.Model):
     __tablename__ = "admin_user"

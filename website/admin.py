@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from datetime import datetime
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, current_app
 from flask_login import current_user, login_required
 import os
 from sqlalchemy import desc
@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, ICON_DICT
 from .obj_store import store
 from .core.form import GeneralForm, AboutForm, AttributeForm, SocialForm, ChangePassForm
-from .core.models import Attribute, Configuration, Project, User
+from .core.models import Attribute, Configuration, Image, Project, User
 
 admin = Blueprint("admin", __name__)
 
@@ -27,17 +27,24 @@ def general():
         lastname = configuration.lastname,
         job_title = configuration.job_title,
         intro_text = configuration.intro_text,
-        portrait = configuration.portrait
+        portrait = configuration.portrait.location
     )
     if general_form.save_general.data and general_form.validate_on_submit():
         print("Saving general")
         if general_form.portrait.data:
             image = general_form.portrait.data
             image_name = secure_filename(image.filename)
-            image_path = os.path.join(admin.config["UPLOAD_FOLDER"], image_name)
-            image.save(os.path.join(admin.root_path, image_path))
+            image_path = os.path.join(current_app.config["UPLOAD_FOLDER"], image_name)
+            image.save(os.path.join(current_app.root_path, image_path))
 
-            configuration.portrait = image_path
+            if configuration.portrait:
+                configuration.portrait.location = "/" + image_path
+            else:
+                configuration.portrait = Image(
+                    location = "/" + image_path,
+                    caption = "Banner image"
+                )
+
         
         configuration.website_title = general_form.website_title.data
         configuration.firstname = general_form.firstname.data
