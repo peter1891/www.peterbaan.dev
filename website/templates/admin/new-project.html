@@ -10,6 +10,7 @@
         {% endif %}"
         class="form"
         method="POST"
+        enctype="multipart/form-data"
         novalidate
       >
         <div class="form-title">
@@ -31,6 +32,10 @@
         <div class="form-row">
           {{ form.github_url.label(class="form-label") }} {{
           form.github_url(class="form-input") }}
+        </div>
+        <div class="form-row">
+          {{ form.thumbnail.label(class="form-label") }} {{
+          form.thumbnail(class="form-input") }}
         </div>
         <div class="modal-btn">
           {{ form.submit(class="form-btn") }}

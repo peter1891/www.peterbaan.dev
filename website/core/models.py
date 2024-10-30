@@ -60,6 +60,10 @@ class Project(db.Model):
     creation_date = mapped_column(Date, default=datetime.now)
     images = relationship("Image", back_populates="project")
 
+    def validate_image(field):
+        if field.data:
+            field.data = re.sub(r"[^a-z0-9_.-]", "_", field.data)
+
 class User(UserMixin, db.Model):
     __tablename__ = "admin_user"
     

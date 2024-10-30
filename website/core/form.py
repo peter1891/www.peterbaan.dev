@@ -1,5 +1,6 @@
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed
 from wtforms import StringField, TextAreaField, PasswordField, SelectField, FileField, HiddenField, SubmitField, Label
 from wtforms.validators import DataRequired, Email, Regexp
 
@@ -59,7 +60,9 @@ class GeneralForm(FlaskForm):
         validators=[DataRequired()]
     )
     portrait = FileField(
-        label="Portrait"
+        label="Portrait",
+        validators=[FileAllowed(["jpg", "png", "jpeg"])],
+        render_kw={"accept": ".jpg, .jpeg, .png"},
     )
     save_general = SubmitField(
         "Save"
@@ -123,8 +126,10 @@ class ProjectForm(FlaskForm):
         label="Github URL",
         validators=[DataRequired()],
     )
-    banner_img = FileField(
-        label="Banner image"
+    thumbnail = FileField(
+        label="Thumbnail image",
+        validators=[FileAllowed(["jpg", "png", "jpeg"])],
+        render_kw={"accept": ".jpg, .jpeg, .png"},
     )
     creation_date = HiddenField(
         "Creation date"

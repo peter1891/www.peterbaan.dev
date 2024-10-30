@@ -1,10 +1,12 @@
 from datetime import datetime
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, current_app
 from flask_login import login_required, current_user
+import os
+from werkzeug.utils import secure_filename
 
 from . import db, ICON_DICT
 from .core.form import AttributeForm, SocialForm, ProjectForm
-from .core.models import Attribute, Configuration, Project
+from .core.models import Attribute, Configuration, Image, Project
 
 OBJECT_MAP = {
     "attribute": (Attribute, "admin.about", "admin/new-attribute.html", "Attribute"),
@@ -40,13 +42,26 @@ def add_object(obj_type):
         print("Saving object")
 
         if obj_type == "project":
+            if form.thumbnail.data:
+                image = form.thumbnail.data
+                image_name = secure_filename(image.filename)
+                image_path = os.path.join(current_app.config["UPLOAD_FOLDER"], image_name)
+                image.save(os.path.join(current_app.root_path, image_path))
+
+                image = Image(
+                    location = "/" + image_path,
+                    caption = form.project_title.data + " thumbnail image"
+                )
+
             object_to_add = Project(
                 config_id = configuration.id,
                 title = form.project_title.data,
                 description_short = form.description_short.data,
                 description_long = form.description_long.data,
                 github_url = form.github_url.data,
+                images = [image]
             )
+
         else:
             icon = ICON_DICT[form.attribute_type.data]
 
@@ -99,6 +114,7 @@ def edit_object(obj_type, obj_id):
             description_short = object_to_edit.description_short,
             description_long = object_to_edit.description_long,
             github_url = object_to_edit.github_url,
+            thumbnail = object_to_edit.images[0].location,
         )
 
     form.submit.label.text = "Save"
@@ -120,7 +136,7 @@ def edit_object(obj_type, obj_id):
     return render_template(
         obj_html,
         configuration=configuration, 
-        title="Edit " + obj_name,
+        title="Edit " + object_to_edit.title,
         form=form,
         object=object_to_edit,
         logged_in=current_user.is_authenticated

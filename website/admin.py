@@ -42,7 +42,7 @@ def general():
             else:
                 configuration.portrait = Image(
                     location = "/" + image_path,
-                    caption = "Banner image"
+                    caption = "Portrait  image"
                 )
 
         
