@@ -1,8 +1,17 @@
-from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import StringField, TextAreaField, PasswordField, SelectField, FileField, HiddenField, SubmitField, Label
+from wtforms import Form, StringField, DecimalField, TextAreaField, PasswordField, SelectField, MultipleFileField, FileField, HiddenField, SubmitField, FieldList, FormField
 from wtforms.validators import DataRequired, Email, Regexp
+
+class ImageForm(Form):
+    image_id = HiddenField(
+        "Image id"
+    )
+    image = FileField(
+        label="Image",
+        validators=[FileAllowed(["jpg", "png", "jpeg"])],
+        render_kw={"accept": ".jpg, .jpeg, .png"},
+    )
 
 class ContactForm(FlaskForm):
     name = StringField(
@@ -68,23 +77,23 @@ class GeneralForm(FlaskForm):
         "Save"
     )
 
-class AboutForm(FlaskForm):
-    about_text = TextAreaField(
-        label="About text", 
-        validators=[DataRequired()]
-    )
-    save_about = SubmitField(
-        "Save"
-    )
-
 class AttributeForm(FlaskForm):
     attribute_type = SelectField(
         label="Type", 
-        choices=[("age", "Age"), ("email", "E-mail"), ("name", "Name"), ("residence", "Residence")]
+        choices=[("age", "Age"), ("e-mail", "E-mail"), ("name", "Name"), ("residence", "Residence")]
+    )
+    attribute_type_label = StringField(
+        label="Type label"
     )
     attribute_value = StringField(
         label="Value",
         validators=[DataRequired()]
+    )
+    attribute_order = DecimalField(
+        label="Order",
+        default=0,
+        places=0,
+        render_kw={"step": "1", "min": "0"}
     )
     attribute_hidden = HiddenField(
         "Hidden"
@@ -96,17 +105,35 @@ class AttributeForm(FlaskForm):
 class SocialForm(FlaskForm):
     attribute_type = SelectField(
         label="Type", 
-        choices=[("facebook", "Facebook"), ("github", "Github"), ("linkedin", "LinkedIn")]
+        choices=[("facebook", "Facebook"), ("github", "Github"), ("linkedIn", "LinkedIn")]
+    )
+    attribute_type_label = StringField(
+        label="Type label"
     )
     attribute_value = StringField(
         label="Value",
         validators=[DataRequired()]
+    )
+    attribute_order = DecimalField(
+        label="Order",
+        default=0,
+        places=0,
+        render_kw={"step": "1", "min": "0"}
     )
     attribute_hidden = HiddenField(
         "Hidden"
     )
     submit = SubmitField(
         "Add"
+    )
+
+class AboutForm(FlaskForm):
+    about_text = TextAreaField(
+        label="About text", 
+        validators=[DataRequired()]
+    )
+    save_about = SubmitField(
+        "Save"
     )
 
 class ProjectForm(FlaskForm):
@@ -130,6 +157,16 @@ class ProjectForm(FlaskForm):
         label="Thumbnail image",
         validators=[FileAllowed(["jpg", "png", "jpeg"])],
         render_kw={"accept": ".jpg, .jpeg, .png"},
+    )
+    preview_images = MultipleFileField(
+        label="Preview images",
+        validators=[FileAllowed(["jpg", "png", "jpeg"])],
+        render_kw={"accept": ".jpg, .jpeg, .png"},
+    )
+    images = FieldList(
+        FormField(ImageForm),
+        min_entries=0,
+        max_entries=None,
     )
     creation_date = HiddenField(
         "Creation date"

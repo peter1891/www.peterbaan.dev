@@ -20,13 +20,12 @@
           <div class="form-row">
             <p class="form-label">Attributes</p>
             <div class="admin-component-list-wrapper">
-              <ul class="admin-component-list">
-                {% if not configuration.attributes %}
+              <ul class="admin-component-list attribute-list">
+                {% if not attributes %}
                 <li>No Attributes</li>
-                {% else %} {% for attribute in configuration.attributes %} {% if
-                attribute.is_type == "attribute" %}
-                <li class="about-item admin-component-item">
-                  <div class="grid-2-cols">
+                {% else %} {% for attribute in attributes %}
+                <li class="about-item attribute-item admin-component-item">
+                  <div class="grid-3-cols">
                     <div class="about-item-header">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +39,7 @@
                       </p>
                     </div>
                     <p class="about-item-text">{{ attribute.value }}</p>
+                    <p class="about-item-text">{{ attribute.order }}</p>
                   </div>
                   <div class="admin-component-btn">
                     <a
@@ -67,19 +67,8 @@
                         ></path></svg
                     ></a>
                   </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="admin-component-item-dots"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M104,60A12,12,0,1,1,92,48,12,12,0,0,1,104,60Zm60,12a12,12,0,1,0-12-12A12,12,0,0,0,164,72ZM92,116a12,12,0,1,0,12,12A12,12,0,0,0,92,116Zm72,0a12,12,0,1,0,12,12A12,12,0,0,0,164,116ZM92,184a12,12,0,1,0,12,12A12,12,0,0,0,92,184Zm72,0a12,12,0,1,0,12,12A12,12,0,0,0,164,184Z"
-                      ></path>
-                    </svg>
-                  </div>
                 </li>
-                {% endif %} {% endfor %} {%endif%}
+                {% endfor %} {%endif%}
               </ul>
             </div>
           </div>
@@ -92,10 +81,10 @@
             <p class="form-label">Socials</p>
             <div class="admin-component-list-wrapper">
               <ul class="admin-component-list">
-                {% if not configuration.attributes %}
+                {% if not socials %}
                 <li>No Socials</li>
-                {% else %}{% for social in configuration.attributes %} {% if
-                social.is_type == "social" %}
+                {% else %}{% for social in socials %} {% if social.is_type ==
+                "social" %}
                 <li class="about-item admin-component-item">
                   <div class="grid-2-cols">
                     <div class="about-item-header">
@@ -138,17 +127,6 @@
                         ></path></svg
                     ></a>
                   </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="admin-component-item-dots"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M104,60A12,12,0,1,1,92,48,12,12,0,0,1,104,60Zm60,12a12,12,0,1,0-12-12A12,12,0,0,0,164,72ZM92,116a12,12,0,1,0,12,12A12,12,0,0,0,92,116Zm72,0a12,12,0,1,0,12,12A12,12,0,0,0,164,116ZM92,184a12,12,0,1,0,12,12A12,12,0,0,0,92,184Zm72,0a12,12,0,1,0,12,12A12,12,0,0,0,164,184Z"
-                      ></path>
-                    </svg>
-                  </div>
                 </li>
                 {% endif %} {% endfor %} {%endif%}
               </ul>
@@ -165,4 +143,5 @@
     </div>
   </section>
 </main>
+<script src="/static/js/admin/script_about.js"></script>
 {% endblock %}

@@ -21,8 +21,16 @@
         </div>
         {{ form.csrf_token }}{{ form.attribute_hidden() }}
         <div class="form-row">
-          {{ form.attribute_type.label(class="form-label") }} {{
-          form.attribute_type(class="form-input") }}
+          <div class="grid-2-cols">
+            <div>
+              {{ form.attribute_type.label(class="form-label") }} {{
+              form.attribute_type(class="form-input") }}
+            </div>
+            <div>
+              {{ form.attribute_order.label(class="form-label") }} {{
+              form.attribute_order(class="form-input") }}
+            </div>
+          </div>
         </div>
         <div class="form-row">
           {{ form.attribute_value.label(class="form-label") }} {{

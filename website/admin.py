@@ -27,7 +27,7 @@ def general():
         lastname = configuration.lastname,
         job_title = configuration.job_title,
         intro_text = configuration.intro_text,
-        portrait = configuration.portrait.location
+        portrait = configuration.portrait,
     )
     if general_form.save_general.data and general_form.validate_on_submit():
         print("Saving general")
@@ -37,13 +37,7 @@ def general():
             image_path = os.path.join(current_app.config["UPLOAD_FOLDER"], image_name)
             image.save(os.path.join(current_app.root_path, image_path))
 
-            if configuration.portrait:
-                configuration.portrait.location = "/" + image_path
-            else:
-                configuration.portrait = Image(
-                    location = "/" + image_path,
-                    caption = "Portrait  image"
-                )
+            configuration.portrait = "/" + image_path
 
         
         configuration.website_title = general_form.website_title.data
@@ -69,6 +63,11 @@ def general():
 def about():
     configuration = db.session.execute(db.select(Configuration).where(Configuration.id == "1")).scalar()
 
+    attributes = sorted([ attribute for attribute in configuration.attributes if attribute.is_type == "attribute" ],
+                        key=lambda a: a.order)
+    socials = sorted([ attribute for attribute in configuration.attributes if attribute.is_type == "social" ],
+                     key=lambda a: a.order)
+
     about_form = AboutForm(
         about_text = configuration.about_text
     )
@@ -80,10 +79,12 @@ def about():
         print("About saved")
         
         return redirect(url_for("admin.about"))
-
+    
     return render_template(
         "admin/about.html",
         configuration=configuration,
+        attributes=attributes,
+        socials=socials,
         about_form = about_form,
         year=datetime.now().year, 
         logged_in=current_user.is_authenticated
