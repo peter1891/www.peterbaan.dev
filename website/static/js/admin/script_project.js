@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const previewImageIcon = document.getElementById("preview-image-icon");
   const previewImageText = document.getElementById("preview-image-text");
 
+  const previewImagesDiv = document.querySelectorAll(
+    ".admin-project-preview-div"
+  );
+
   let previewImageWrapper;
   let previewImageAdd;
 
@@ -44,6 +48,35 @@ document.addEventListener("DOMContentLoaded", () => {
       newPreviewImageRemove = document.createElement("div");
       newPreviewImageRemove.classList.add("admin-project-preview-remove");
 
+      newPreviewImageRemoveBtn = document.createElement("a");
+      newPreviewImageRemoveBtn.classList.add("admin-project-preview-btn");
+
+      newPreviewImageRemoveIcon = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      newPreviewImageRemoveIcon.setAttribute(
+        "xmlns",
+        "http://www.w3.org/2000/svg"
+      );
+      newPreviewImageRemoveIcon.classList.add(
+        "admin-project-preview-remove-icon"
+      );
+      newPreviewImageRemoveIcon.setAttribute("viewBox", "0 0 256 256");
+
+      newPreviewImageRemoveIconPath = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+      );
+      newPreviewImageRemoveIconPath.setAttribute(
+        "d",
+        "M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"
+      );
+
+      newPreviewImageRemoveIcon.appendChild(newPreviewImageRemoveIconPath);
+      newPreviewImageRemoveBtn.appendChild(newPreviewImageRemoveIcon);
+      newPreviewImageRemove.appendChild(newPreviewImageRemoveBtn);
+
       // Create the hidden input
       newPreviewImageInput = document.createElement("input");
       newPreviewImageInput.id = "image_id";
@@ -69,6 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
     previewImageWrapper.appendChild(previewImageAdd);
     previewImageDiv.appendChild(previewImageWrapper);
   };
+
+  // Remove Preview Image from selection
+  previewImagesDiv.forEach(function (container) {
+    container.addEventListener("click", function (event) {
+      event.stopPropagation();
+      container.remove();
+      console.log("Preview image removed");
+    });
+  });
 
   // Submit Preview Images
   formProject.addEventListener("submit", async function (event) {

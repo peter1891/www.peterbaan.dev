@@ -832,14 +832,29 @@ ul .about-item .grid-3-cols {
 }
 
 .admin-project-preview-remove {
+  opacity: 0;
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
 .admin-project-preview-remove:hover {
-  background-color: #dee2e680;
-  transition: 0.2s;
+  opacity: 1;
+  background-color: #dee2e6cc;
+}
+
+.admin-project-preview-btn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-project-preview-remove-icon {
+  fill: #343a40;
+  width: 32px;
+  height: 32px;
 }
 
 .admin-project-preview-img {
